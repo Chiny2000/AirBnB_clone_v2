@@ -1,124 +1,37 @@
-<center> <h1>HBNB 
----
-The contents of this repository represent the outset of a student project aimed at constructing a replica of the AirBnB website. At this stage, a backend interface, referred to as a console, has been established to oversee program data. Through console commands, users can engage in operations such as creation, modification, and deletion of objects, alongside file storage management. The utilization of a JSON serialization/deserialization system ensures persistent storage across sessions.
+AirBnB Clone - MySQL
 
+This is a group project for a Python back-end application using MySQL and SQLAlchemy. The project is to be completed by a team of two people: EUNICE HOGBA and Zerebel Tanu. The project started on Sep 15, 2023, at 7:00 AM and must be completed by Sep 21, 2023, at 7:00 AM. The checker will be released on Sep 16, 2023, at 7:00 PM, and an auto review will be launched at the deadline.
 
-<center> <h2>General Use</h2> </center>
+Background Context
 
-1. First clone this repository.
+In this project, environment variables will be crucial. Make sure to set the following environment variables:
 
-3. Once the repository is cloned locate the "console.py" file and run it as follows:
-```
-/AirBnB_clone$ ./console.py
-```
-4. When this command is run the following prompt should appear:
-```
-(hbnb)
-```
-5. This prompt designates you are in the "HBnB" console. There are a variety of commands available within the console program.
+HBNB_ENV: Running environment, which can be "dev" or "test" for now (soon "production").
 
-##### Commands:
+HBNB_MYSQL_USER: MySQL username.
 
-create - Generates an instance according to the provided class.
+HBNB_MYSQL_PWD: MySQL password.
 
-destroy - Eradicates an object based on its class and UUID.
+HBNB_MYSQL_HOST: MySQL hostname.
 
-show - Displays an object based on its class and UUID.
+HBNB_MYSQL_DB: MySQL database name.
 
-all - Exhibits all accessible objects within the program, or all objects of a specified class.
+HBNB_TYPE_STORAGE: Type of storage used, which can be "file" (using FileStorage) or "db" (using DBStorage).
 
-update - Modifies existing attributes of an object based on the class name and UUID.
+Resources
 
-quit - Terminates the program (EOF will also achieve this).
+cmd module
 
-##### Alternative Syntax
-Users are able to issue a number of console command using an alternative syntax:
+Python packages concept
 
-	Usage: <class_name>.<command>([<id>[name_arg value_arg]|[kwargs]])
-Advanced syntax is implemented for the following commands: 
+unittest module
 
-    * all - Shows all objects the program has access to, or all objects of a given class
+*args and **kwargs
 
-	* count - Return number of object instances by class
+SQLAlchemy tutorial
 
-    * show - Shows an object based on class and UUID
+How To Create a New User and Grant Permissions in MySQL
 
-	* destroy - Destroys an object based on class and UUID
+Python3 and environment variables
 
-    * update - Updates existing attributes an object based on class name and UUID
-
-<br>
-<br>
-<center> <h2>Examples</h2> </center>
-<h3>Primary Command Syntax</h3>
-
-###### Example 0: Create an object
-Usage: create <class_name>
-```
-(hbnb) create BaseModel
-```
-```
-(hbnb) create BaseModel
-3aa5babc-efb6-4041-bfe9-3cc9727588f8
-(hbnb)                   
-```
-###### Example 1: Show an object
-Usage: show <class_name> <_id>
-
-```
-(hbnb) show BaseModel 3aa5babc-efb6-4041-bfe9-3cc9727588f8
-[BaseModel] (3aa5babc-efb6-4041-bfe9-3cc9727588f8) {'id': '3aa5babc-efb6-4041-bfe9-3cc9727588f8', 'created_at': datetime.datetime(2020, 2, 18, 14, 21, 12, 96959), 
-'updated_at': datetime.datetime(2020, 2, 18, 14, 21, 12, 96971)}
-(hbnb)  
-```
-###### Example 2: Destroy an object
-Usage: destroy <class_name> <_id>
-```
-(hbnb) destroy BaseModel 3aa5babc-efb6-4041-bfe9-3cc9727588f8
-(hbnb) show BaseModel 3aa5babc-efb6-4041-bfe9-3cc9727588f8
-** no instance found **
-(hbnb)   
-```
-###### Example 3: Update an object
-Usage: update <class_name> <_id>
-```
-(hbnb) update BaseModel b405fc64-9724-498f-b405-e4071c3d857f first_name "person"
-(hbnb) show BaseModel b405fc64-9724-498f-b405-e4071c3d857f
-[BaseModel] (b405fc64-9724-498f-b405-e4071c3d857f) {'id': 'b405fc64-9724-498f-b405-e4071c3d857f', 'created_at': datetime.datetime(2020, 2, 18, 14, 33, 45, 729889), 
-'updated_at': datetime.datetime(2020, 2, 18, 14, 33, 45, 729907), 'first_name': 'person'}
-(hbnb)
-```
-<h3>Alternative Syntax</h3>
-
-###### Example 0: Show all User objects
-Usage: <class_name>.all()
-```
-(hbnb) User.all()
-["[User] (99f45908-1d17-46d1-9dd2-b7571128115b) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 34, 92071), 'id': '99f45908-1d17-46d1-9dd2-b7571128115b', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 34, 92056)}", "[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
-```
-
-###### Example 1: Destroy a User
-Usage: <class_name>.destroy(<_id>)
-```
-(hbnb) User.destroy("99f45908-1d17-46d1-9dd2-b7571128115b")
-(hbnb)
-(hbnb) User.all()
-(hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
-```
-###### Example 2: Update User (by attribute)
-Usage: <class_name>.update(<_id>, <attribute_name>, <attribute_value>)
-```
-(hbnb) User.update("98bea5de-9cb0-4d78-8a9d-c4de03521c30", name "Todd the Toad")
-(hbnb)
-(hbnb) User.all()
-(hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'name': 'Todd the Toad', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
-```
-###### Example 3: Update User (by dictionary)
-Usage: <class_name>.update(<_id>, <dictionary>)
-```
-(hbnb) User.update("98bea5de-9cb0-4d78-8a9d-c4de03521c30", {'name': 'Fred the Frog', 'age': 9})
-(hbnb)
-(hbnb) User.all()
-(hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'name': 'Fred the Frog', 'age': 9, 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
-```
-<br>
+MySQL 8.0 SQL Statement Syntax
